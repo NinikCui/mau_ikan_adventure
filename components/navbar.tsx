@@ -71,42 +71,46 @@ export default function Navbar() {
       <>
         <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 bg-white shadow-lg rounded-2xl transition-all duration-300">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-3">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group z-50">
-              <img
-                src="/images/logo2.png"
-                alt="Ecosrot Logo"
-                className="h-10 md:h-12 transition-transform duration-300 group-hover:scale-105"
-              />
-            </Link>
+            {/* Left: Logo + Desktop Navigation */}
+            <div className="flex items-center gap-10">
+              {/* Logo */}
+              <Link href="/" className="flex items-center gap-2 group z-50">
+                <img
+                  src="/images/logo2.png"
+                  alt="Ecosrot Logo"
+                  className="h-10 md:h-12 transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8 font-medium">
-              {navItems.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href));
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="relative text-base font-semibold transition duration-300 text-gray-700 hover:text-[#00804c] group"
-                  >
-                    {item.label}
-                    <span
-                      className={`absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-[#00804c] to-[#74C365] transform transition-transform duration-300 ${
-                        isActive
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
-                  </Link>
-                );
-              })}
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex gap-8 font-medium">
+                {navItems.map((item) => {
+                  const isActive =
+                    pathname === item.href ||
+                    (item.href !== "/" && pathname.startsWith(item.href));
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="relative text-base font-semibold transition duration-300 text-gray-700 hover:text-[#00804c] group"
+                    >
+                      {item.label}
+                      <span
+                        className={`absolute left-0 -bottom-1 h-[2px] w-full bg-gradient-to-r from-[#00804c] to-[#74C365] transform transition-transform duration-300 ${
+                          isActive
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Desktop Auth Buttons */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center justify-end gap-4">
               {!user ? (
                 <>
                   <Link
